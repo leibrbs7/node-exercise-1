@@ -7,7 +7,14 @@ const choice = process.argv[4]
 const output = ''
 
 if (fileExist === undefined) {
-  console.log('Requires an argument of path.')
+  process.stdin.on("data", data => {
+    data = data.toString()
+    const lineNumber = data.split('\n');
+    for (let i = 0; i < lineNumber.length; i += 1) {
+      console.log(`${i + 1} : ${lineNumber[i]}`);
+    }
+  })
+
 } else if (secArg === undefined) {
   console.log('Second argument is required.')
 } else if (fileExist) {
@@ -39,4 +46,4 @@ if (fs.existsSync(secArg)){
       console.log('!!! Error: Problem in Creating File')
     }
     }
-} 
+}
